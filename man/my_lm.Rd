@@ -12,7 +12,7 @@ my_lm(formula, data)
 \item{data}{A data frame containing the variables in the model.}
 }
 \value{
-A numeric vector of coefficients.
+A numeric vector of responses, coefficients, residuals, and fitted values.
 }
 \description{
 Fits a linear model to the given data.

@@ -5,7 +5,7 @@
 #'@param formula An object of class \code{"formula"}.
 #'@param data A data frame containing the variables in the model.
 #'
-#'@return A numeric vector of coefficients.
+#'@return A numeric vector of responses, coefficients, residuals, and fitted values.
 #'
 #'@examples
 #'my_lm(y~x, data = dataset)
@@ -40,18 +40,4 @@ my_lm <- function(formula, data) {
 
   # Return the result object
   return(result)
-}
-
-print.mylm <- function(x, ...) {
-  # Print the call (the original function call)
-  cat("Call:\n")
-  print(x$call)
-
-  # Print the coefficients in a formatted manner
-  cat("\nCoefficients:\n")
-  coef_mat <- matrix(c(rownames(x$coefficients), x$coefficients), ncol = 2)
-  print(coef_mat, quote = FALSE)
-
-  # Return the original object invisibly
-  invisible(x)
 }
