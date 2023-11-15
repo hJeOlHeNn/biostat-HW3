@@ -12,18 +12,18 @@
 #'@export
 #'
 my_summary <- function(object) {
-  #Print the call (the original function call)
-  cat("Call:\n")
-  print(object$call)
+  # Initialize a list to store results
+  summary_results <- list()
 
-  # Calculate and print summary statistics of residuals
-  cat("\nResiduals:\n")
+  # Store the original function call
+  summary_results$call <- object$call
+
+  # Calculate summary statistics of residuals
   res_stats <- fivenum(object$residuals)
   names(res_stats) <- c("Min", "1Q", "Median", "3Q", "Max")
-  print(res_stats)
+  summary_results$residuals <- res_stats
 
-  # Calculate and print the coefficients, standard errors, t-values, and p-values
-  cat("\nCoefficients:\n")
+  # Calculate the coefficients, standard errors, t-values, and p-values
   sse <- sum((object$residuals) ^ 2)
   sst <- sum((object$response - mean(object$response)) ^ 2)
   mse <- sse / (nrow(object$qr$qr) - length(object$coefficients))
@@ -33,35 +33,30 @@ my_summary <- function(object) {
   p_value <-
     2 * pt(-abs(t_value),
            df = nrow(object$qr$qr) - length(object$coefficients))
-  coef_summary <-
-    data.frame(
-      Estimate = object$coefficients,
-      Std.Error = std_error,
-      t_value = t_value,
-      P_value = p_value
-    )
-  print(coef_summary)
-
-  # Print the residual standard error and degrees of freedom
-  cat(
-    "\nResidual standard error:",
-    sqrt(mse),
-    "on",
-    nrow(object$qr$qr) - length(object$coefficients),
-    "degrees of freedom\n"
+  coef_summary <- data.frame(
+    Estimate = object$coefficients,
+    Std.Error = std_error,
+    t_value = t_value,
+    P_value = p_value
   )
+  summary_results$coefficients <- coef_summary
 
-  # Calculate and print R-squared and Adjusted R-squared values
-  #r_squared <- 1 - sse/sum((object$fitted.values - mean(object$fitted.values))^2 + sse)
+  # Calculate the residual standard error and degrees of freedom
+  residual_standard_error <- sqrt(mse)
+  degrees_of_freedom <-
+    nrow(object$qr$qr) - length(object$coefficients)
+  summary_results$residual_standard_error <- residual_standard_error
+  summary_results$degrees_of_freedom <- degrees_of_freedom
+
+  # Calculate R-squared and Adjusted R-squared values
   r_squared <- 1 - sse / sst
   n <- nrow(object$qr$qr)
   p <- length(object$coefficients)
   adj_r_squared <- 1 - (1 - r_squared) * ((n - 1) / (n - p))
-  #adj_r_squared <- 1 - (1 - r_squared) * ((nrow(object$qr$qr) - 1)/(nrow(object$qr$qr) - length(object$coefficients)))
-  cat("Multiple R-squared:", r_squared, "\n")
-  cat("Adjusted R-squared:", adj_r_squared, "\n")
+  summary_results$r_squared <- r_squared
+  summary_results$adjusted_r_squared <- adj_r_squared
 
-  # Calculate and print the F-statistic, degrees of freedom, and p-value
+  # Calculate the F-statistic, degrees of freedom, and p-value
   f_statistic <-
     (sum((
       object$fitted.values - mean(object$fitted.values)
@@ -70,18 +65,12 @@ my_summary <- function(object) {
     pf(
       f_statistic,
       df1 = length(object$coefficients) - 1,
-      df2 = nrow(object$qr$qr) - length(object$coefficients),
+      df2 = degrees_of_freedom,
       lower.tail = FALSE
     )
-  cat(
-    "F-statistic:",
-    f_statistic,
-    "on",
-    length(object$coefficients) - 1,
-    "and",
-    nrow(object$qr$qr) - length(object$coefficients),
-    "DF, p-value:",
-    p_value_f,
-    "\n"
-  )
+  summary_results$f_statistic <- f_statistic
+  summary_results$f_statistic_p_value <- p_value_f
+
+  # Return the summary results
+  return(summary_results)
 }

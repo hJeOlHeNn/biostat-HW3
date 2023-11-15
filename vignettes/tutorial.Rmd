@@ -17,3 +17,111 @@ knitr::opts_chunk$set(
 ```{r setup}
 library(linearmodel)
 ```
+
+# Introduction
+
+This vignette demonstrates the usage of a custom R package for performing linear regression. The package includes three main functions: my_lm, print.mylm, and my_summary. These functions are designed to mimic the functionality of R's built-in lm function and associated methods.
+
+# Installation
+
+```{r}
+#library(devtools)
+#devtools::install_github("https://github.com/hJeOlHeNn/biostat-HW3")
+#library(linearmodel)
+```
+
+# Usage
+
+## Linear Regression with my_lm
+
+The my_lm function performs linear regression. Here's an example using the mtcars dataset:
+
+```{r}
+data(mtcars)
+fit1 <- my_lm(mpg ~ wt + cyl, data = mtcars)
+```
+
+Use * to include interaction variables.
+
+```{r}
+fit2 <- my_lm(mpg ~ wt*cyl, data = mtcars)
+```
+
+Use -1 to remove intercept from the model.
+
+```{r}
+fit3 <- my_lm(mpg ~ -1 + wt + cyl, data = mtcars)
+```
+
+## Viewing Results with print.mylm
+
+To view the results of the linear regression, use print.mylm:
+
+```{r}
+print.mylm(fit1)
+```
+
+## Summary Statistics with my_summary
+
+For a detailed summary of the regression model, use my_summary:
+
+```{r}
+my_summary(fit1)
+```
+
+# Comparison with R's Built-in Functions
+
+## Correctness
+
+We'll compare the results of my_lm with R's lm function to ensure correctness.
+
+```{r}
+# compare my_lm using model 1
+fit_builtin1 <- lm(mpg ~ wt + cyl, data = mtcars)
+all.equal(as.numeric(fit1$coefficients), as.numeric(fit_builtin1$coefficients))
+
+# compare my_lm using model 2
+fit_builtin2 <- lm(mpg ~ wt*cyl, data = mtcars)
+all.equal(as.numeric(fit2$coefficients), as.numeric(fit_builtin2$coefficients))
+
+# compare my_lm using model 3
+fit_builtin3 <- lm(mpg ~ -1 + wt + cyl, data = mtcars)
+all.equal(as.numeric(fit3$coefficients), as.numeric(fit_builtin3$coefficients))
+
+# compare my_summary r square
+all.equal(as.numeric(my_summary(fit1)$r_squared), as.numeric(summary(fit_builtin1)$r.squared))
+
+# compare my_summary adjusted r square
+all.equal(as.numeric(my_summary(fit1)$adjusted_r_squared), as.numeric(summary(fit_builtin1)$adj.r.squared))
+
+# compare my_summary p-value
+all.equal(as.numeric(my_summary(fit1)$r_squared), as.numeric(summary(fit_builtin1)$r.squared))
+```
+
+## Efficiency
+
+We'll use the bench package to compare the performance of my_lm and lm.
+
+```{r}
+library(bench)
+
+# compare efficiency of my_lm
+bench::mark(
+  as.numeric(fit1$coefficients),
+  as.numeric(fit_builtin1$coefficients),
+  iterations = 10,
+  check = TRUE
+)
+
+# compare efficiency of my_summary
+bench::mark(
+  my_summary(fit1),
+  summary(fit_builtin1),
+  iterations = 10,
+  check = FALSE
+)
+```
+
+# Conclusion
+
+This vignette has demonstrated how to use the my_lm, print.mylm, and my_summary functions from the My Linear Regression Package and compared them with R's built-in linear regression functions. The package aims to provide an alternative implementation of linear regression analysis in R.
