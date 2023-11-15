@@ -18,7 +18,8 @@ print.mylm <- function(x, ...) {
 
   # Print the coefficients in a formatted manner
   cat("\nCoefficients:\n")
-  coef_mat <- matrix(c(rownames(x$coefficients), x$coefficients), ncol = 2)
+  coef_mat <-
+    matrix(c(rownames(x$coefficients), x$coefficients), ncol = 2)
   print(coef_mat, quote = FALSE)
 
   # Return the original object invisibly

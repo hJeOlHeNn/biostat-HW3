@@ -18,6 +18,6 @@ A numeric vector of responses, coefficients, residuals, and fitted values.
 Fits a linear model to the given data.
 }
 \examples{
-my_lm(y~x, data = dataset)
+my_lm(y ~ x + z, data = dataset)
 
 }

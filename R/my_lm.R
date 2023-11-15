@@ -8,7 +8,7 @@
 #'@return A numeric vector of responses, coefficients, residuals, and fitted values.
 #'
 #'@examples
-#'my_lm(y~x, data = dataset)
+#'my_lm(y ~ x + z, data = dataset)
 #'
 #'@export
 #'
@@ -35,7 +35,15 @@ my_lm <- function(formula, data) {
   fitted.values <- predictor %*% coefficients
 
   # Create a list to store the results, and assign a class for custom printing
-  result <- list(response = response, coefficients = coefficients, residuals = residuals, fitted.values = fitted.values, qr = qr_fit, call = match.call())
+  result <-
+    list(
+      response = response,
+      coefficients = coefficients,
+      residuals = residuals,
+      fitted.values = fitted.values,
+      qr = qr_fit,
+      call = match.call()
+    )
   class(result) <- "mylm"
 
   # Return the result object
