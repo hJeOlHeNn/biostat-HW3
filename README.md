@@ -1,5 +1,5 @@
 
-# linearmodel
+# linearRegressionModel
 
 <!-- badges: start -->
 [![R-CMD-check](https://github.com/hJeOlHeNn/biostat-HW3/actions/workflows/R-CMD-check.yaml/badge.svg)](https://github.com/hJeOlHeNn/biostat-HW3/actions/workflows/R-CMD-check.yaml)
@@ -14,7 +14,7 @@ This vignette demonstrates the usage of a custom R package for performing linear
 ```{r}
 #library(devtools)
 #devtools::install_github("https://github.com/hJeOlHeNn/biostat-HW3")
-#library(linearmodel)
+#library(linearRegressionModel)
 ```
 
 ## Usage
@@ -109,10 +109,6 @@ all.equal(as.numeric(my_summary(fit1)$r_squared), as.numeric(summary(fit_builtin
 
 # compare my_summary adjusted r square
 all.equal(as.numeric(my_summary(fit1)$adjusted_r_squared), as.numeric(summary(fit_builtin1)$adj.r.squared))
-#> [1] TRUE
-
-# compare my_summary p-value
-all.equal(as.numeric(my_summary(fit1)$r_squared), as.numeric(summary(fit_builtin1)$r.squared))
 #> [1] TRUE
 ```
 
