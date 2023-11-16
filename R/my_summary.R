@@ -12,16 +12,10 @@
 #'@export
 #'
 my_summary <- function(object) {
-  # Initialize a list to store results
-  summary_results <- list()
-
-  # Store the original function call
-  summary_results$call <- object$call
 
   # Calculate summary statistics of residuals
   res_stats <- fivenum(object$residuals)
   names(res_stats) <- c("Min", "1Q", "Median", "3Q", "Max")
-  summary_results$residuals <- res_stats
 
   # Calculate the coefficients, standard errors, t-values, and p-values
   sse <- sum((object$residuals) ^ 2)
@@ -39,22 +33,17 @@ my_summary <- function(object) {
     t_value = t_value,
     P_value = p_value
   )
-  summary_results$coefficients <- coef_summary
 
   # Calculate the residual standard error and degrees of freedom
   residual_standard_error <- sqrt(mse)
   degrees_of_freedom <-
     nrow(object$qr$qr) - length(object$coefficients)
-  summary_results$residual_standard_error <- residual_standard_error
-  summary_results$degrees_of_freedom <- degrees_of_freedom
 
   # Calculate R-squared and Adjusted R-squared values
   r_squared <- 1 - sse / sst
   n <- nrow(object$qr$qr)
   p <- length(object$coefficients)
   adj_r_squared <- 1 - (1 - r_squared) * ((n - 1) / (n - p))
-  summary_results$r_squared <- r_squared
-  summary_results$adjusted_r_squared <- adj_r_squared
 
   # Calculate the F-statistic, degrees of freedom, and p-value
   f_statistic <-
@@ -68,8 +57,19 @@ my_summary <- function(object) {
       df2 = degrees_of_freedom,
       lower.tail = FALSE
     )
-  summary_results$f_statistic <- f_statistic
-  summary_results$f_statistic_p_value <- p_value_f
+
+  # store the values
+  summary_results <- list(
+    call = object$call,
+    residuals = res_stats,
+    coefficients = coef_summary,
+    residual_standard_error = residual_standard_error,
+    degrees_of_freedom = degrees_of_freedom,
+    r_squared = r_squared,
+    adjusted_r_squared = adj_r_squared,
+    f_statistic = f_statistic,
+    f_statistic_p_value = p_value_f
+  )
 
   # Return the summary results
   return(summary_results)
