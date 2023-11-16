@@ -38,6 +38,7 @@ The my_lm function performs linear regression. Here's an example using the mtcar
 
 ```{r}
 data(mtcars)
+
 fit1 <- my_lm(mpg ~ wt + cyl, data = mtcars)
 ```
 
