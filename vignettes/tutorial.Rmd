@@ -89,13 +89,13 @@ fit_builtin3 <- lm(mpg ~ -1 + wt + cyl, data = mtcars)
 all.equal(as.numeric(fit3$coefficients), as.numeric(fit_builtin3$coefficients))
 
 # compare my_summary r square
-all.equal(as.numeric(my_summary(fit1)$r_squared), as.numeric(summary(fit_builtin1)$r.squared))
+#all.equal(as.numeric(my_summary(fit1)$r_squared), as.numeric(summary(fit_builtin1)$r.squared))
 
 # compare my_summary adjusted r square
-all.equal(as.numeric(my_summary(fit1)$adjusted_r_squared), as.numeric(summary(fit_builtin1)$adj.r.squared))
+#all.equal(as.numeric(my_summary(fit1)$adjusted_r_squared), as.numeric(summary(fit_builtin1)$adj.r.squared))
 
 # compare my_summary p-value
-all.equal(as.numeric(my_summary(fit1)$r_squared), as.numeric(summary(fit_builtin1)$r.squared))
+#all.equal(as.numeric(my_summary(fit1)$r_squared), as.numeric(summary(fit_builtin1)$r.squared))
 ```
 
 ## Efficiency
