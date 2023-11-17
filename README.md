@@ -1,5 +1,5 @@
 
-# linearRegressionModel
+# linearmodel
 
 <!-- badges: start -->
 [![R-CMD-check](https://github.com/hJeOlHeNn/biostat-HW3/actions/workflows/R-CMD-check.yaml/badge.svg)](https://github.com/hJeOlHeNn/biostat-HW3/actions/workflows/R-CMD-check.yaml)
@@ -14,7 +14,7 @@ This vignette demonstrates the usage of a custom R package for performing linear
 ```{r}
 #library(devtools)
 #devtools::install_github("https://github.com/hJeOlHeNn/biostat-HW3")
-#library(linearRegressionModel)
+#library(linearmodel)
 ```
 
 ## Usage

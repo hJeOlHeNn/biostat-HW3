@@ -15,7 +15,7 @@ knitr::opts_chunk$set(
 ```
 
 ```{r setup}
-library(linearRegressionModel)
+library(linearmodel)
 ```
 
 # Introduction
@@ -27,7 +27,7 @@ This vignette demonstrates the usage of a custom R package for performing linear
 ```{r}
 #library(devtools)
 #devtools::install_github("https://github.com/hJeOlHeNn/biostat-HW3")
-#library(linearRegressionModel)
+#library(linearmodel)
 ```
 
 # Usage

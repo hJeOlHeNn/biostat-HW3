@@ -1,4 +1,4 @@
-Package: linearRegressionModel
+Package: linearmodel
 Type: Package
 Title: Simple Linear Regression Model
 Version: 0.1.0

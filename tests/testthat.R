@@ -7,6 +7,6 @@
 # * https://testthat.r-lib.org/articles/special-files.html
 
 library(testthat)
-library(linearRegressionModel)
+library(linearmodel)
 
-test_check("linearRegressionModel")
+test_check("linearmodel")
