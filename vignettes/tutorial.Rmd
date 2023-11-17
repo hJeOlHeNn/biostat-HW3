@@ -1,8 +1,8 @@
 ---
-title: "Tutorial"
+title: "tutorial"
 output: rmarkdown::html_vignette
 vignette: >
-  %\VignetteIndexEntry{my_lm}
+  %\VignetteIndexEntry{tutorial}
   %\VignetteEngine{knitr::rmarkdown}
   %\VignetteEncoding{UTF-8}
 ---
@@ -14,9 +14,8 @@ knitr::opts_chunk$set(
 )
 ```
 
-```{r setup}
+```{r}
 library(linearmodel)
-library(bench)
 ```
 
 # Introduction
