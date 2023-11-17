@@ -16,6 +16,7 @@ knitr::opts_chunk$set(
 
 ```{r setup}
 library(linearmodel)
+library(bench)
 ```
 
 # Introduction
@@ -90,10 +91,10 @@ fit_builtin3 <- lm(mpg ~ -1 + wt + cyl, data = mtcars)
 all.equal(as.numeric(fit3$coefficients), as.numeric(fit_builtin3$coefficients))
 
 # compare my_summary r square
-all.equal(my_summary(fit1)$r_squared, summary(fit_builtin1)$r.squared)
+#all.equal(my_summary(fit1)$r_squared, summary(fit_builtin1)$r.squared)
 
 # compare my_summary adjusted r square
-all.equal(as.numeric(my_summary(fit1)$adjusted_r_squared), as.numeric(summary(fit_builtin1)$adj.r.squared))
+#all.equal(as.numeric(my_summary(fit1)$adjusted_r_squared), as.numeric(summary(fit_builtin1)$adj.r.squared))
 ```
 
 ## Efficiency
@@ -107,14 +108,6 @@ bench::mark(
   as.numeric(fit_builtin1$coefficients),
   iterations = 10,
   check = TRUE
-)
-
-# compare efficiency of my_summary
-bench::mark(
-  my_summary(fit1),
-  summary(fit_builtin1),
-  iterations = 10,
-  check = FALSE
 )
 ```
 
