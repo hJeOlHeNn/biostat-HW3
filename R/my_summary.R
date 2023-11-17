@@ -74,8 +74,3 @@ my_summary <- function(object) {
   # Return the summary results
   return(summary_results)
 }
-
-lm_fit <- lm(mpg ~ wt, data = mtcars)
-lm_summary <- summary(lm_fit)
-
-as.numeric(lm_summary$fstatistic[1])
