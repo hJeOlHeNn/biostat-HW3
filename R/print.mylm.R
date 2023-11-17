@@ -7,7 +7,7 @@
 #'@return A numeric vector of coefficients.
 #'
 #'@examples
-#'print.mylm(model)
+#'print.mylm(my_lm(mpg ~ wt + cyl, data = mtcars))
 #'
 #'@export
 #'

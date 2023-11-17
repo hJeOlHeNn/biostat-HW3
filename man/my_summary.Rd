@@ -16,6 +16,6 @@ multiple vectors of coefficients, tests, and R square values.
 Summarize linear model to the given data.
 }
 \examples{
-my_summary(model)
+my_summary(my_lm(mpg ~ wt + cyl, data = mtcars))
 
 }

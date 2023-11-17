@@ -7,7 +7,7 @@
 #'@return multiple vectors of coefficients, tests, and R square values.
 #'
 #'@examples
-#'my_summary(model)
+#'my_summary(my_lm(mpg ~ wt + cyl, data = mtcars))
 #'
 #'@export
 #'

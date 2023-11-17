@@ -16,6 +16,6 @@ A numeric vector of coefficients.
 Print the result of a linear model.
 }
 \examples{
-print.mylm(model)
+print.mylm(my_lm(mpg ~ wt + cyl, data = mtcars))
 
 }
