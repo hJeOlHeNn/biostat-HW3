@@ -4,12 +4,12 @@
 \alias{print.mylm}
 \title{Print Method for My Linear Model Objects}
 \usage{
-\method{print}{mylm}(x, ...)
+print.mylm(x, ...)
 }
 \arguments{
 \item{...}{further arguments passed to or from other methods.}
 
-\item{model}{An model returned by my_lm function.}
+\item{x}{An model returned by my_lm function.}
 }
 \value{
 A numeric vector of coefficients.
