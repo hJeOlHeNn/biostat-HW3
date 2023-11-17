@@ -2,11 +2,13 @@
 % Please edit documentation in R/print.mylm.R
 \name{print.mylm}
 \alias{print.mylm}
-\title{Print Linear Model}
+\title{Print Method for My Linear Model Objects}
 \usage{
 \method{print}{mylm}(x, ...)
 }
 \arguments{
+\item{...}{further arguments passed to or from other methods.}
+
 \item{model}{An model returned by my_lm function.}
 }
 \value{

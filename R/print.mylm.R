@@ -1,8 +1,9 @@
-#'Print Linear Model
+#'Print Method for My Linear Model Objects
 #'
 #'Print the result of a linear model.
 #'
 #'@param model An model returned by my_lm function.
+#'@param ... further arguments passed to or from other methods.
 #'
 #'@return A numeric vector of coefficients.
 #'
