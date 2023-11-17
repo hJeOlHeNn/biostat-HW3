@@ -101,8 +101,6 @@ all.equal(as.numeric(my_summary(fit1)$adjusted_r_squared), as.numeric(summary(fi
 We'll use the bench package to compare the performance of my_lm and lm.
 
 ```{r}
-library(bench)
-
 # compare efficiency of my_lm
 bench::mark(
   as.numeric(fit1$coefficients),
