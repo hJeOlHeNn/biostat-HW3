@@ -8,7 +8,7 @@
 #'@return A numeric vector of responses, coefficients, residuals, and fitted values.
 #'
 #'@examples
-#'my_lm(y ~ x + z, data = dataset)
+#'my_lm(y ~ x + z, data = mtcars)
 #'
 #'@export
 #'
