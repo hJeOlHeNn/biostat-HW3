@@ -108,6 +108,14 @@ bench::mark(
   iterations = 10,
   check = TRUE
 )
+
+# compare efficiency of my_summary
+bench::mark(
+  my_summary(fit1),
+  summary(fit_builtin1),
+  iterations = 10,
+  check = FALSE
+)
 ```
 
 # Conclusion
